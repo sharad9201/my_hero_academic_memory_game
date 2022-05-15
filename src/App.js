@@ -1,19 +1,28 @@
 import "./App.css";
 import React, { useState } from "react";
+import img1 from "./img/almight1.jpg";
+import img2 from "./img/baku1.jpg";
+import img3 from "./img/deku1.jpg";
+import img4 from "./img/frogie1.jpg";
+import img5 from "./img/shoto1.png";
+import img6 from "./img/ochaku.jpg";
+import SingleCard from './components/SingleCard.js';
 
 const cardImages = [
-  { "src": "/img/almight1.jpg" },
-  { "src": "/img/baku1.jpg" },
-  { "src": "/img/deku1.png" },
-  { "src": "/img/frogie1.jpg" },
-  { "src": "/img/shoto1.jpg" },
-  { "src": "/img/ochaku.jpg" },
+  { src: img1 },
+  { src: img2 },
+  { src: img3 },
+  { src: img4 },
+  { src: img5 },
+  { src: img6 },
 ];
-
 
 function App() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
+  const [choiceOne, setChoiceOne] = useState(null)
+  const [choiceTwo, setChoiceTwo] = useState(null)
+
 
   // shuffle cards
   const shuffleCards = () => {
@@ -32,12 +41,7 @@ function App() {
 
       <div className="card-grid">
         {cards.map((card) => (
-          <div className="card" key={card.id}>
-            <div>
-              <img className="front" src={card.src} alt="card front" />
-              <img className="back" src="/img/cover.jpg" alt="card back" />
-            </div>
-          </div>
+          <SingleCard key={card.id} card={card}/>
         ))}
       </div>
     </div>
