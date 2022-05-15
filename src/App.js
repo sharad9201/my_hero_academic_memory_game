@@ -9,12 +9,12 @@ import img6 from "./img/ochaku.jpg";
 import SingleCard from "./components/SingleCard.js";
 
 const cardImages = [
-  { src: img1,matched:false },
-  { src: img2,matched:false },
-  { src: img3,matched:false },
-  { src: img4,matched:false },
-  { src: img5,matched:false },
-  { src: img6,matched:false },
+  { src: img1, matched: false },
+  { src: img2, matched: false },
+  { src: img3, matched: false },
+  { src: img4, matched: false },
+  { src: img5, matched: false },
+  { src: img6, matched: false },
 ];
 
 function App() {
@@ -45,25 +45,23 @@ function App() {
   useEffect(() => {
     if (choiceOne && choiceTwo) {
       if (choiceOne.src === choiceTwo.src) {
-        setCards(prevCards =>{
-          return prevCards.map(card=>{
-            if (card.src === choiceOne.src){
-              return {...card, matched:true } 
-             } else {
-                return card
-              }
-            
-          })
-        })
+        setCards((prevCards) => {
+          return prevCards.map((card) => {
+            if (card.src === choiceOne.src) {
+              return { ...card, matched: true };
+            } else {
+              return card;
+            }
+          });
+        });
         resetTurn();
-      } else{
-        console.log('those card dont match')
-        resetTurn()
+      } else {
+        setTimeout(()=> resetTurn(),1000);
       }
     }
   }, [choiceOne, choiceTwo]);
 
-  console.log(cards)
+  console.log(cards);
   //  reset choices & increase turn
   const resetTurn = () => {
     setChoiceOne(null);
@@ -77,7 +75,11 @@ function App() {
 
       <div className="card-grid">
         {cards.map((card) => (
-          <SingleCard key={card.id} card={card} handleChoice={handleChoice} />
+          <SingleCard key={card.id}
+           card={card}
+           handleChoice={handleChoice}
+           flipped={card === choiceOne|| card=== choiceTwo || card.matched}
+           />
         ))}
       </div>
     </div>
