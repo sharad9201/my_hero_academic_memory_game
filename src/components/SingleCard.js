@@ -1,9 +1,9 @@
 import "./SingleCard.css";
 import img7 from "../img/cover.jpg";
 
-export default function SingleCard({ card }) {
+export default function SingleCard({ card, handleChoice }) {
     const handleClick = ()=>{
-
+        handleChoice(card)
     }
   return (
     <div className="card">
